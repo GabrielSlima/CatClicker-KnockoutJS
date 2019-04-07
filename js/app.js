@@ -25,20 +25,20 @@ var Cat = function(name, catId, img) {
 };
 
 var ViewModel = function(){
-	
-	this.texxt = ko.observable('asdas');
-	this.allCats = ko.observableArray([
+	var self = this;
+	self.texxt = ko.observable();
+	self.allCats = ko.observableArray([
 		{'Name': 'Marcio','id': 1, 'img': 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'},
-		{'Name': 'Jemima', 'id': 2, 'img': 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'},
-		{'Name': 'Jota', 'id': 3, 'img': 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'},
-		{'Name': 'Davi', 'id': 4, 'img': 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'},
-		{'Name': 'Josué', 'id': 5, 'img': 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'}
+		{'Name': 'Jemima', 'id': 2, 'img': 'https://wallpapercave.com/wp/5zDmqug.jpg'},
+		{'Name': 'Jota', 'id': 3, 'img': 'http://images.unsplash.com/photo-1500259571355-332da5cb07aa?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max'},
+		{'Name': 'Davi', 'id': 4, 'img': 'https://i.pinimg.com/originals/10/26/2c/10262c0b978632f219819445b11939c0.jpg'},
+		{'Name': 'Josué', 'id': 5, 'img': 'https://i.ytimg.com/vi/69Zo05WeIF0/maxresdefault.jpg'}
 	]);
 
 	var gatosObjetos = ko.observable([]);
 	
-	for(var i = 0; i < this.allCats().length; i++) {
-		gatosObjetos().push(ko.observable(new Cat(this.allCats()[i].Name, this.allCats()[i].id,this.allCats()[i].img))); 	
+	for(var i = 0; i < self.allCats().length; i++) {
+		gatosObjetos().push(ko.observable(new Cat(self.allCats()[i].Name, self.allCats()[i].id,self.allCats()[i].img))); 	
 	}
 	
 	var teste = ko.observable(null);
@@ -53,49 +53,50 @@ var ViewModel = function(){
 	
 	console.log('sss');
 	
-	this.currentCat = ko.observable(new Cat('Nome', 'ID', 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'));
-	this.currentCat(new Cat('novo ob', 'ID', 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'));
-	// console.log(this.currentCat().img());
+	self.currentCat = ko.observable(new Cat('Nome', 'ID', 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'));
+	self.currentCat(new Cat('novo ob', 'ID', 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'));
+	console.log('Falhei');
+	console.log(self.currentCat());
 
-	this.incrementCounter = function(){
+	self.incrementCounter = function(){
 	
-		this.currentCat().count(this.currentCat().count()+1);
+		self.currentCat().count(self.currentCat().count()+1);
 		
-		console.log(this.currentCat().count());
+		console.log(self.currentCat().count());
 		
-		if(this.currentCat().stepsCounter() == 10){
+		if(self.currentCat().stepsCounter() == 10){
 		
-			this.currentCat().actualBorn(this.currentCat().borns()[this.currentCat().actualBornIndex()].name);
+			self.currentCat().actualBorn(self.currentCat().borns()[self.currentCat().actualBornIndex()].name);
 			
-			this.currentCat().stepsCounter(1);
+			self.currentCat().stepsCounter(1);
 			
-			if(this.currentCat().borns().length -1 == this.currentCat().actualBornIndex()){
-				this.currentCat().actualBornIndex(0);
+			if(self.currentCat().borns().length -1 == self.currentCat().actualBornIndex()){
+				self.currentCat().actualBornIndex(0);
 			}
 			else {
-				this.currentCat().actualBornIndex(this.currentCat().actualBornIndex()+1);
+				self.currentCat().actualBornIndex(self.currentCat().actualBornIndex()+1);
 			}
 		}
-		this.currentCat().stepsCounter(this.currentCat().stepsCounter()+1);		
+		self.currentCat().stepsCounter(self.currentCat().stepsCounter()+1);		
 	};
 
-	this.getCurrentCat = function(object) {
+	self.getCurrentCat = function(object) {
 	
 		console.log(object());
 		
-		console.log('This object on allCats');
+		console.log('self object on allCats');
 		
 		console.log(gatosObjetos()[object()]().name());
 		
 		currentCat = gatosObjetos()[object()];
 		
-		console.log(currentCat().name());
+		console.log(currentCat());
 
-		this.texxt(gatosObjetos()[object()].name, gatosObjetos()[object()].id, gatosObjetos()[object()].img);
+		self.currentCat(currentCat());
 	
 	};
 	console.log('opa');
-	console.log(this.currentCat());
+	console.log(self.currentCat());
 };
 
 ko.applyBindings(new ViewModel());

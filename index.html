@@ -16,6 +16,7 @@
 		<ul data-bind="foreach: allCats">
 			<li><span data-bind="text: Name, attr:{id:$index}, click: $parent.getCurrentCat.bind($data,$index)"></li>	
 		</ul>
+		<span data-bind="text: texxt()"></span>
 	</body>
 	<script type="text/javascript" src="js/ko/knockout.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
