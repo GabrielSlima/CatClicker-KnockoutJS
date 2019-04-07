@@ -11,10 +11,10 @@
 			<h2 data-bind="text: actualBorn"></h2>
 			
 		</main>
-		<img data-bind="attr:{src: currentCat().img}, click: incrementCounter">
+		<img data-bind="attr:{src: currentCat().img}, click: incrementCounter()">
 		<h3>Other cats</h3>
-		<ul data-bind="foreach: currentCat().cats">
-			<li><span data-bind="text: Name"></li>	
+		<ul data-bind="foreach: allCats">
+			<li><span data-bind="text: Name, attr:{id:$index}, click: $parent.getCurrentCat.bind($data,$index)"></li>	
 		</ul>
 	</body>
 	<script type="text/javascript" src="js/ko/knockout.js"></script>
