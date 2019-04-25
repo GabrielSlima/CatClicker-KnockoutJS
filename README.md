@@ -1,4 +1,4 @@
-# Travel Show me a photo
+# Travel CatClicker - KnockoutJs version
 This app implements knockout js, it has a list of items, each of them has a photo, a name and a number of clicks
 
 ## Requirements
